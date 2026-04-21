@@ -94,7 +94,18 @@ if (contactForm && formMessage) {
       return;
     }
 
-    showFormMessage("Thank you. Your message is ready to send once a backend is connected.", "success");
+    const whatsappMessage = [
+      "New message from Daughters of Destiny website",
+      "",
+      `Name: ${name}`,
+      `Email: ${email}`,
+      "",
+      `Message: ${message}`,
+    ].join("\n");
+    const whatsappUrl = `https://wa.me/27823622095?text=${encodeURIComponent(whatsappMessage)}`;
+
+    showFormMessage("Opening WhatsApp with your message ready to send.", "success");
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     contactForm.reset();
   });
 }
